@@ -139,7 +139,7 @@ void partitionEven(int value)
   free(partition);
 }
 
-int Isprime (int num)
+/*int Isprime (int num)
 {
   int i;
   for(i = 2; i < num; i++){
@@ -172,7 +172,6 @@ void partitionPrime(int value)
   free(partition);
 
 }
+*/
 
-//asdfsdfasdkjlahksjdfh
 
-//asdjfhlaskjdfhlaksjdh
