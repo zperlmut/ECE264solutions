@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "answer06.h"
+
+int main(int argc, char **argv)
+{
+  int value = 4 ;
+  partitionAll(value);
+
+  return EXIT_SUCCESS;
+
+
+}
