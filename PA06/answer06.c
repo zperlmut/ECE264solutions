@@ -6,7 +6,7 @@
 void printpartition(int *partition, int len)
 {
   int i;
-  printf(" = ");
+  printf("= ");
   for (i = 0; i < len; i++){
     if (i != 0) printf (" + ");
     printf("%d", partition[i]);
@@ -51,8 +51,8 @@ void partitionIncreasingHelper(int budget, int *partition, int pos)
 
   //INDUCTIVE CASE!!!!!
   int spending;
-  int start = pos == 0 ? 1 : partition[pos - 1] + 1;
-  for(spending = start; spending <= budget; spending++){
+  int begin = pos == 0 ? 1 : partition[pos - 1] + 1;
+  for(spending = begin; spending <= budget; spending++){
     partition[pos] = spending;
     partitionIncreasingHelper(budget - spending, partition, pos + 1);
   }
@@ -76,8 +76,8 @@ void partitionDecreasingHelper(int budget, int *partition, int pos)
 
   //INDUCTIVE CASE!!!!!
   int spending;
-  int start = pos == 0 ? budget : partition[pos - 1] - 1;
-  for(spending = start; spending > 0 ; spending--){
+  int begin = pos == 0 ? budget : partition[pos - 1] - 1;
+  for(spending = begin; spending > 0 ; spending--){
     partition[pos] = spending;
     partitionDecreasingHelper(budget - spending, partition, pos + 1);
   }
@@ -139,7 +139,45 @@ void partitionEven(int value)
   free(partition);
 }
 
-/*int Isprime (int num)
+
+int Isodd(int num)
+{
+  
+  if(num % 2 == 0) return 1;
+  return 0;
+  
+}
+
+void partitionOddAndEvenHelper(int budget, int *partition, int pos)
+{
+  //BASE CASE!!!
+  if (budget <= 0){
+    printpartition(partition, pos);
+    return;
+  }  
+
+  //INDUCTIVE CASE!!!!!
+  int spending;
+  for(spending = 1; spending <= budget ; spending += 1){ 
+    partition[pos] = spending;
+    if(pos ==  0 || Isodd(partition[pos - 1]) != Isodd(partition[pos])){
+      // partition[pos] = spending;
+      partitionOddAndEvenHelper(budget - spending, partition, pos + 1);
+      }
+  }
+}
+
+void partitionOddAndEven(int value)
+{
+  int *partition = malloc(sizeof(int) * value);
+  partitionOddAndEvenHelper(value, partition, 0);
+  free(partition);
+}
+
+
+
+
+int Isprime (int num)
 {
   int i;
   for(i = 2; i < num; i++){
@@ -172,6 +210,4 @@ void partitionPrime(int value)
   free(partition);
 
 }
-*/
-
 
