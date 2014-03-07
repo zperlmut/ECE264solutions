@@ -27,6 +27,7 @@ int List_length(List *list)
 
 List *List_merge(List * lhs, List * rhs, int (*compar)(const char *, const char*))
 {
+
   if (lhs == NULL) return rhs;
   if (rhs == NULL) return lhs;
 
@@ -44,6 +45,8 @@ List *List_merge(List * lhs, List * rhs, int (*compar)(const char *, const char*
 	tail->next = lhs;
 	tail = lhs;
       }
+      lhs = lhs->next;
+      tail->next = NULL;
     }
     else {
       if(tail == NULL){
@@ -58,10 +61,15 @@ List *List_merge(List * lhs, List * rhs, int (*compar)(const char *, const char*
       tail->next = NULL;
     }
   }
+  tail->next = (lhs == NULL) ? rhs : lhs; 
+  return head;
+
 }
+
 
 List * List_sort(List * list, int (*compar)(const char *, const char*))
 {
+
   //Base Case
   int len = List_length(list);
   if (len <= 1) return list;
@@ -84,5 +92,7 @@ List * List_sort(List * list, int (*compar)(const char *, const char*))
   rhs = List_sort(rhs, compar);
   
 return List_merge(lhs, rhs, compar);
-  
+
+
 }
+
