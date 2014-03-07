@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "answer07.h"
+
+List *List_createNode(const char * str)
+{
+  List *node = malloc(sizeof(List));
+  node->str = strdup(str);
+  node->next = NULL;
+  return node;
+}
+
+void List_destroy(List *List)
+{
+  if (List == NULL) return;
+  List_destroy(List->next);
+  free(list->str);
+  free(list);
+}
+
+int List_length(List *List)
+{
+  if (list == NULL) return 0;
+  return 1 + List_length(list->next);
+}
